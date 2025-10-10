@@ -1,22 +1,22 @@
 using UnityEngine;
-using UnityEngine.InputSystem;   // <-- new Input System
+using UnityEngine.InputSystem;   //Input System
 
 public class BananaController : MonoBehaviour
 {
-    // Components / refs
+    //Components / refs
     private CharacterController Controller;
-    public Transform Cam;                     // drag Main Camera here (has CameraFollow)
+    public Transform Cam;                     //drag Main Camera
 
-    // Movement
+    //Movement
     public float Speed = 5f;                  // units/sec
     public float jumpHeight = 1.5f;
     public float gravityValue = -9.81f;
     private Vector3 playerVelocity;
 
-    // Input Actions (assign in Inspector)
+    //Input Actions 
     [Header("Input Actions")]
-    public InputActionReference moveAction;   // Vector2
-    public InputActionReference jumpAction;   // Button
+    public InputActionReference moveAction;   
+    public InputActionReference jumpAction;   
 
     void Awake()
     {
@@ -37,16 +37,15 @@ public class BananaController : MonoBehaviour
 
     void Update()
     {
-        // --- Grounding & gravity ---
+        //grounding and gravity 
         bool grounded = Controller.isGrounded;
         if (grounded && playerVelocity.y < 0f)
-            playerVelocity.y = -2f; // small stick force so we don't bounce
+            playerVelocity.y = -2f; //so we don't bounce 
 
-        // --- Read input (Vector2) ---
+        //to read input 
         Vector2 input = moveAction ? moveAction.action.ReadValue<Vector2>() : Vector2.zero;
 
-        // --- Camera-relative movement (matches your original) ---
-        // NOTE: do NOT multiply input by Time.deltaTime here; we apply it once in Move().
+        //camera relative movement 
         Vector3 camRight = Cam.right;
         Vector3 camFwd = Cam.forward;
         camRight.y = 0f; camFwd.y = 0f;
@@ -56,13 +55,12 @@ public class BananaController : MonoBehaviour
 
         if (Movement.sqrMagnitude > 1f) Movement.Normalize();
 
-        // --- Apply horizontal movement ---
+        //applying horizontal movement 
         Controller.Move(Movement * Speed * Time.deltaTime);
 
-        // --- Rotate to camera / mouse like your original (only while moving) ---
+        //rotating camera 
         if (Movement.sqrMagnitude > 0.0001f)
         {
-            // Use CameraFollow.sensivity as you had
             float sens = Cam.GetComponent<CameraFollow>().sensivity;
             transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * sens * Time.deltaTime);
 
@@ -72,11 +70,11 @@ public class BananaController : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, CamRotation, 0.1f);
         }
 
-        // --- Jump ---
+        //for jumping
         if (jumpAction && jumpAction.action.triggered && grounded)
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityValue);
 
-        // --- Gravity ---
+        //for gravity 
         playerVelocity.y += gravityValue * Time.deltaTime;
         Controller.Move(playerVelocity * Time.deltaTime);
     }
