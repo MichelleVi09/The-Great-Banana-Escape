@@ -6,14 +6,12 @@ A 3D Unity adventure game where you play as a banana trying to return to your fa
 
 ## Gameplay
 - Move: WASD  
-- Jump: Space  
-- Look: Mouse  
+- Jump: Space   
 - Goal: Escape the kitchen, avoid enemies, and reunite with your banana family.
 
 ---
 
 ## Features
-- Third-person camera and character movement  
 - Enemy AI that chases the player  
 - Hand-painted 3D kitchen environment  
 - Smooth controls using Unity’s Character Controller  
