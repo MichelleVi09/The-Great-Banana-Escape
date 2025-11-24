@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/House Assets/HouseInteriorPack/HouseInteriorPack.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 5e128c744fbd10a44a090a5dc783a274
+  - enabled: 1
+    path: Assets/Scenes/ControlsScene.unity
+    guid: f07306f8bcc787c4ead91b65719dc486
+  - enabled: 1
+    path: Assets/Scenes/StartScene.unity
+    guid: 3d1f1d8b963605d48b7d2858c962bd6f
+  - enabled: 1
+    path: Assets/Scenes/Outside Scene.unity
+    guid: de5e71315d2dd624c818aa78cbb4b4ad
+  - enabled: 1
+    path: Assets/Scenes/RoadScene.unity
+    guid: 43b80c6d632b0f94b8b056dd755a66dd
+  - enabled: 1
+    path: Assets/Scenes/CityScene.unity
+    guid: 8589048a4e24fa44ebe61a49ea522227
+  m_configObjects: {}
