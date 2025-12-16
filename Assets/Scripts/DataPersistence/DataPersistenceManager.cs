@@ -131,6 +131,22 @@ public class DataPersistenceManager : MonoBehaviour
     }
 
 
+    public string GetLastSceneName()
+    {
+        // If nothing loaded into memory yet, try to load from disk
+        if (gameData == null)
+        {
+            gameData = dataHandler.Load();
+        }
+
+        if (gameData == null)
+        {
+            return null; // no save file
+        }
+
+        return gameData.lastSceneName;
+    }
+
 
 
     private void OnApplicationQuit()

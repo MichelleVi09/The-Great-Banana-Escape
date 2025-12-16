@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
@@ -9,7 +10,7 @@ public class EnemyAI : MonoBehaviour
     [Header("References")]
     [SerializeField] private NavMeshAgent navAgent;
     [SerializeField] private Transform playerTransform;
-    private PlayerHealth playerHealth;
+    //private PlayerHealth playerHealth;
 
     [Header("Layers")]
     [SerializeField] private LayerMask terrainLayer;
@@ -49,7 +50,7 @@ public class EnemyAI : MonoBehaviour
         {
             navAgent = GetComponent<NavMeshAgent>();
         }
-        if (playerTransform) playerHealth = playerTransform.GetComponent<PlayerHealth>();
+        //if (playerTransform) playerHealth = playerTransform.GetComponent<PlayerHealth>();
     }
     private void Update()
     {
@@ -77,12 +78,8 @@ public class EnemyAI : MonoBehaviour
 
     private void DamagePlayer()
     {
-        if (playerHealth != null)
-        {
-            playerHealth.DamagePlayer(damageAmount);
-
-        }
-        else if (playerTransform != null)
+       
+        if (playerTransform != null)
         {
             playerTransform.SendMessage("DamagePlayer", damageAmount, SendMessageOptions.DontRequireReceiver);
             Debug.Log("Player taken damage (fallback)");
@@ -163,3 +160,5 @@ public class EnemyAI : MonoBehaviour
         }
     }
 }
+
+

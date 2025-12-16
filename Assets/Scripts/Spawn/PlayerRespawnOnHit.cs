@@ -1,9 +1,8 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class RespawnOnCarHit : MonoBehaviour
 {
-    [SerializeField] private Transform respawnPoint;
-    [SerializeField] private string carTag = "Car";
+    [SerializeField] private int Respawn;
     [SerializeField] private AudioClip hitSound;
 
 
@@ -13,19 +12,20 @@ public class RespawnOnCarHit : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
     }
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
 
     {
         // If we hit a car, teleport this player to the respawn point
-        if (other.CompareTag(carTag))
+        if (other.CompareTag("Player"))
         {
-            transform.position = respawnPoint.position;
+            SceneManager.LoadScene(Respawn);
             Debug.Log("Player hit");
-            if (hitSound != null)
-                audioSource.PlayOneShot(hitSound);
-
+            //audioSource.Play();
         }
+
+
     }
 }
+
 
 
